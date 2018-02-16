@@ -17,7 +17,8 @@ class App extends Component {
         <main>
           <ClockComponent />
           <hr/>
-          <GreetComponent name="Noto" />
+          {/* Try changing to daruabao={true}: */}
+          <GreetComponent name="Noto" daruabao={false} />
           <hr/>
           <SwitchComponent />
 
