@@ -11,12 +11,75 @@
     <div id="root"></div>
     <script type="text/babel">
 
+      class ClockComponent extends React.Component {
+
+        timerID;
+
+        // clock = (
+        //   <div>
+        //     <h1>clock snapshot</h1>
+        //     <h2>It is now {this.state.time}.</h2>
+        //   </div>
+        // );
+
+        tick = () => {
+          this.setState({
+            time: new Date().toLocaleTimeString()
+          });
+        };
+
+        constructor() {
+          super();
+          // setInterval(this.tick, 1000);
+        }
+
+        state = { time: new Date().toLocaleTimeString() };
+
+        componentDidMount() {
+          this.timerID = setInterval(
+            () => this.tick(),
+            1000
+          );
+        }
+
+        componentWillUnmount() {
+          clearInterval(this.timerID);
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>clock snapshot</h1>
+              <h2>It is now {this.state.time}.</h2>
+            </div>
+          );
+        }
+      }
+
+      const GreetComponent = (props) => {
+        return <h1>Hello, {props.name}</h1>;
+      }
+
+      const App = () => {
+        return (
+          <section className="app">
+            <ClockComponent />
+            <hr />
+            <GreetComponent name="hahaha" />
+          </section>
+        );
+      };
+
       ReactDOM.render(
-        <h1>Hello react works</h1>,
+        <App />,
         document.getElementById('root')
       );
 
+
     </script>
+    
+    
+    
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
       It slowly compiles JSX with Babel in the browser and uses a large development build of React.
