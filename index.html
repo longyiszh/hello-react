@@ -60,12 +60,40 @@
         return <h1>Hello, {props.name}</h1>;
       }
 
+      class SwitchComponent extends React.Component {
+
+        flipSwitch = () => {
+          this.setState((prevState) => (
+            {
+              lightOn: !prevState.lightOn
+            }
+          ));
+        };
+
+        constructor() {
+          super();
+        };
+
+        state = { lightOn: true }
+
+        render() {
+          return (
+            <button onClick={this.flipSwitch}>
+              {this.state.lightOn ? 'ON' : 'OFF'}
+            </button>
+          );
+        }
+
+      }
+
       const App = () => {
         return (
           <section className="app">
             <ClockComponent />
             <hr />
             <GreetComponent name="hahaha" />
+            <hr />
+            <SwitchComponent />
           </section>
         );
       };
