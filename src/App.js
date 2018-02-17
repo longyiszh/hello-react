@@ -5,6 +5,7 @@ import './App.css';
 import { ClockComponent } from "./clock/clock";
 import { GreetComponent } from "./greet/greet";
 import { SwitchComponent } from "./switch/switch";
+import { RoguesoftComponent } from "./roguesoft/roguesoft";
 
 class App extends Component {
   render() {
@@ -15,13 +16,16 @@ class App extends Component {
           <h1 className="App-title">Hello React</h1>
         </header>
         <main>
-          <ClockComponent />
-          <hr/>
-          {/* Try changing to daruabao={true}: */}
-          <GreetComponent name="Noto" daruabao={false} />
-          <hr/>
-          <SwitchComponent />
-
+          <div className="content">
+            <ClockComponent />
+            <hr/>
+            {/* Try changing to daruabao={true}: */}
+            <GreetComponent name="Noto" daruabao={false} />
+            <hr/>
+            <SwitchComponent />
+            <hr/>
+            <RoguesoftComponent />
+          </div>
         </main>
       </section>
     );

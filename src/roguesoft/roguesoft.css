@@ -1,0 +1,10 @@
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  margin: 1em;
+  background-color: #eeeeee;
+  padding: 1em;
+}
