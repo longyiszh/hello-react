@@ -6,6 +6,7 @@ import { ClockComponent } from "./clock/clock";
 import { GreetComponent } from "./greet/greet";
 import { SwitchComponent } from "./switch/switch";
 import { RoguesoftComponent } from "./roguesoft/roguesoft";
+import { ApplicationComponent } from "./application/application";
 
 class App extends Component {
   render() {
@@ -25,6 +26,8 @@ class App extends Component {
             <SwitchComponent />
             <hr/>
             <RoguesoftComponent />
+            <hr />
+            <ApplicationComponent />
           </div>
         </main>
       </section>
