@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 
-import { ClockComponent } from "./clock/clock";
-import { GreetComponent } from "./greet/greet";
-import { SwitchComponent } from "./switch/switch";
-import { RoguesoftComponent } from "./roguesoft/roguesoft";
-import { ApplicationComponent } from "./application/application";
-import { XiaomajiaComponent } from './xiaomajia/xiaomajia';
+import { ClockComponent } from "../components/clock/clock";
+import { GreetComponent } from "../components/greet/greet";
+import { SwitchComponent } from "../components/switch/switch";
+import { RoguesoftComponent } from "../components/roguesoft/roguesoft";
+import { ApplicationComponent } from "../components/application/application";
+import { XiaomajiaComponent } from '../components/xiaomajia/xiaomajia';
+
+// actions
+import { setName } from "../actions/user.action";
 
 class App extends Component {
 
@@ -50,10 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setName: (name) => {
-      dispatch({
-        type: "SET_NAME",
-        payload: name
-      });
+      dispatch(setName(name));
     }
   }
 };
