@@ -7,15 +7,42 @@
 // ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();
 
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
-const initialState = {
+const userInitState = {
+  name: "",
+  age: 0
+}
+
+const mathInitState = {
   number: 100,
   alterations: [],
   cunzaiganstr: "La la la"
 };
 
-const reducer = (state = initialState, action) => {
+const userReducer = (state = userInitState, action) => {
+  switch (action.type) {
+    case "SET_NAME":
+      state = {
+        ...state, // es6 展开，“继承”原来的object
+        name: action.payload
+      }
+      break;
+
+    case "SET_AGE":
+      state = {
+        ...state, // es6 展开，“继承”原来的object
+        age: action.payload
+      }
+      break;
+
+    default: 
+      break;
+  }
+  return state;
+};
+
+const mathReducer = (state = mathInitState, action) => {
   switch (action.type) {
     case "ADD":
       state = {
@@ -44,7 +71,7 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-const store = createStore(reducer);
+const store = createStore(combineReducers({userReducer, mathReducer}));
 
 store.subscribe(() => {
   console.log("store updated to", store.getState());
@@ -68,4 +95,14 @@ store.dispatch({
 store.dispatch({
   type: "MULTIPLY",
   payload: 3
+});
+
+store.dispatch({
+  type: "SET_NAME",
+  payload: "高端黑"
+});
+
+store.dispatch({
+  type: "SET_AGE",
+  payload: 10
 });
