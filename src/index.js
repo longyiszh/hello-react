@@ -7,7 +7,8 @@
 // ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();
 
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import logger from 'redux-logger'
 
 const userInitState = {
   name: "",
@@ -71,11 +72,16 @@ const mathReducer = (state = mathInitState, action) => {
   return state;
 };
 
-const store = createStore(combineReducers({userReducer, mathReducer}));
+// an example middleware
+// const loLogger = (store) => (next) => (action) => {
+//   console.log("Action fired:", action);
+//   next(action);
+// }
 
-store.subscribe(() => {
-  console.log("store updated to", store.getState());
-});
+const store = createStore(
+  combineReducers({userReducer, mathReducer}),
+  applyMiddleware(logger)
+);
 
 store.dispatch({
   type: "ADD",
