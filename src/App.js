@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,8 +9,10 @@ import { GreetComponent } from "./greet/greet";
 import { SwitchComponent } from "./switch/switch";
 import { RoguesoftComponent } from "./roguesoft/roguesoft";
 import { ApplicationComponent } from "./application/application";
+import { XiaomajiaComponent } from './xiaomajia/xiaomajia';
 
 class App extends Component {
+
   render() {
     return (
       <section className="App">
@@ -28,6 +32,8 @@ class App extends Component {
             <RoguesoftComponent />
             <hr />
             <ApplicationComponent />
+            <hr/>
+            <XiaomajiaComponent name={this.props.user.name} replaceUser={() => { this.props.setName("longyiszh") }} />
           </div>
         </main>
       </section>
@@ -35,4 +41,21 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setName: (name) => {
+      dispatch({
+        type: "SET_NAME",
+        payload: name
+      });
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
