@@ -19,6 +19,14 @@ export const userReducer = (state = userInitState, action) => {
       }
       break;
 
+    // capability with redux-promise-middleware
+    case "SET_AGE_FULFILLED":
+      state = {
+        ...state, // es6 展开，“继承”原来的object
+        age: action.payload
+      }
+      break;
+
     default: 
       break;
   }

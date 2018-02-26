@@ -12,7 +12,7 @@ import { ApplicationComponent } from "../components/application/application";
 import { XiaomajiaComponent } from '../components/xiaomajia/xiaomajia';
 
 // actions
-import { setName } from "../actions/user.action";
+import { setName, setAge } from "../actions/user.action";
 
 class App extends Component {
 
@@ -36,7 +36,12 @@ class App extends Component {
             <hr />
             <ApplicationComponent />
             <hr/>
-            <XiaomajiaComponent name={this.props.user.name} replaceUser={() => { this.props.setName("longyiszh") }} />
+            <XiaomajiaComponent
+              name={this.props.user.name}
+              age={this.props.user.age}
+              replaceUser={() => { this.props.setName("longyiszh") }}
+              downgrade={() => { this.props.setAge(-1) }}
+            />
           </div>
         </main>
       </section>
@@ -54,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setName: (name) => {
       dispatch(setName(name));
+    },
+    setAge: (age) => {
+      dispatch(setAge(age));
     }
   }
 };
